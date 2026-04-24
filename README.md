@@ -1,88 +1,84 @@
 # AI & Backend Dev Guide
 
-AI 에이전트, 하네스, 대규모 데이터 처리까지 — 실무에서 바로 쓸 수 있는 개발 가이드 모음입니다.
+AI 에이전트, 대규모 데이터 처리, 그리고 현대적인 풀스택 아키텍처까지 — 실무 지향적 개발 가이드 모음입니다.
 
 ---
 
-## AI Agent 실전 가이드 (10편)
+## 🚀 심화 기술 아티클 시리즈 (Deep Dive)
 
-AI Agent를 회사에 도입하기 위한 A to Z. 개념부터 비용 산정, 보안, 배포까지.
+아키텍처 설계와 성능 최적화의 핵심 원리를 심층적으로 다룹니다.
 
-| # | 제목 |
-|---|------|
-| 1 | [AI Agent란 — 챗봇과 뭐가 다른가](ai-agent-guide/01-concept.md) |
-| 2 | [아키텍처 기초 — LLM + RAG + Tool Use 조합](ai-agent-guide/02-architecture.md) |
-| 3 | [사무직 Agent — 이메일, 문서, 데이터 자동화](ai-agent-guide/03-office-agent.md) |
-| 4 | [고객 응대 Agent — 챗봇, 키오스크, 콜센터](ai-agent-guide/04-customer-agent.md) |
-| 5 | [서버 Agent — 모니터링, 장애 감지, 자동 복구](ai-agent-guide/05-server-agent.md) |
-| 6 | [인프라 & 스펙 — 뭘 깔아야 하나](ai-agent-guide/06-infrastructure.md) |
-| 7 | [비용 산정 — API 호출부터 서버까지](ai-agent-guide/07-cost.md) |
-| 8 | [보안 — 사내 데이터가 외부로 나가면 안 될 때](ai-agent-guide/08-security.md) |
-| 9 | [배포 & 운영 — Docker, 모니터링, 장애 대응](ai-agent-guide/09-deployment.md) |
-| 10 | [우리 회사에 도입하기 — ROI부터 확산까지](ai-agent-guide/10-adoption.md) |
+### 백엔드 심화 (Backend Deep Dive)
+- [01. Kafka Zero-copy와 고성능 메시징의 원리](backend-deep-dive/01-kafka-zero-copy.md)
+- [02. 분산 락(Distributed Lock) 구현과 동시성 제어](backend-deep-dive/02-distributed-lock.md)
+- [03. OAuth 2.0과 OIDC 보안 아키텍처](backend-deep-dive/03-oauth-oidc-security.md)
+- [04. gRPC와 Protobuf의 내부 동작 및 성능 분석](backend-deep-dive/04-grpc-protobuf-internal.md)
+- [05. Saga 패턴을 활용한 분산 트랜잭션 구현](backend-deep-dive/05-saga-pattern-implementation.md)
+- [06. 분산 환경의 데이터 일관성 전략: Saga 패턴 설계](backend-deep-dive/06-distributed-transaction-saga-pattern.md)
+- [07. 분산 시스템의 신뢰성 기초: 합의 알고리즘과 쿼럼 설계](backend-deep-dive/07-distributed-consensus-raft-paxos.md)
+- [08. Java 동시성 모델의 변화: Virtual Thread 도입 가이드](backend-deep-dive/08-java-virtual-thread-performance.md)
+- [09. 인프라 부하를 유발하는 Cache Stampede 현상과 방어 전략](backend-deep-dive/09-cache-stampede-prevention-strategy.md)
+- [10. 대규모 데이터 처리를 위한 DB 샤딩과 리샤딩 전략 분석](backend-deep-dive/10-database-sharding-and-resharding.md)
 
----
+### 프런트엔드 심화 (Frontend Deep Dive)
+- [01. Micro-Frontends 아키텍처 도입과 통합 전략 분석](frontend-deep-dive/01-micro-frontends-architecture.md)
+- [02. 브라우저 CRP 최적화를 통한 LCP 개선 전략](frontend-deep-dive/02-critical-rendering-path-optimization.md)
+- [03. React Server Components(RSC) 메커니즘과 페칭 전략 변화](frontend-deep-dive/03-react-server-components-mechanics.md)
+- [04. 현대적 프런트엔드 배포 파이프라인과 트래픽 제어 전략](frontend-deep-dive/04-frontend-deployment-strategies.md)
+- [05. 기술 부채와 비즈니스 가치의 균형을 위한 의사결정 전략](frontend-deep-dive/05-technical-debt-management-strategy.md)
 
-## AI 에이전트 설계 패턴 (3편)
-
-CoT, ReAct, MCP 등 에이전트의 사고 방식과 설계 패턴.
-
-| # | 제목 |
-|---|------|
-| 1 | [AI 에이전트의 사고 방식 — ReAct, CoT, Tool Use 패턴 비교](ai-agent-design/01-thinking-patterns.md) |
-| 2 | [MCP로 AI 에이전트 만들기 — 실전 자동화 파이프라인](ai-agent-design/02-automation-pipeline.md) |
-| 3 | [설계 패턴 — 단일 에이전트 vs 멀티 에이전트 오케스트레이션](ai-agent-design/03-multi-agent.md) |
-
----
-
-## AI 하네스 (6편)
-
-AI에게 회사 규칙을 가르치고, 행동을 제어하고, 팀에 도입하기.
-
-| # | 제목 |
-|---|------|
-| 1 | [AI 하네스란 — AI에게 회사 규칙을 가르치는 법](ai-harness/01-what-is-harness.md) |
-| 2 | [프로젝트 규칙 파일 작성법 — AI가 읽는 사내 코딩 가이드](ai-harness/02-project-rules.md) |
-| 3 | [메모리와 Skills — AI가 같은 실수를 반복하지 않게](ai-harness/03-memory-skills.md) |
-| 4 | [Hooks와 보안 — AI의 행동을 강제하고 위험을 차단하기](ai-harness/04-hooks-security.md) |
-| 5 | [팀에 하네스 도입하기 — 설계 체크리스트와 단계별 가이드](ai-harness/05-team-rollout.md) |
-| 6 | [실전 Q&A — 하네스 도입할 때 진짜 궁금한 것들](ai-harness/06-practical-qa.md) |
+### 인프라 심화 (Infrastructure Deep Dive)
+- [01. Multi-Region Active-Active 아키텍처 설계와 데이터 정합성 관리](infrastructure-deep-dive/01-multi-region-active-active-design.md)
+- [02. FinOps 관점의 클라우드 인프라 비용 최적화 로드맵](infrastructure-deep-dive/02-finops-cost-optimization-roadmap.md)
+- [03. Kubernetes 대규모 트래픽 대응을 위한 고도화된 스케일링 전략](infrastructure-deep-dive/03-kubernetes-advanced-scaling-strategy.md)
+- [04. Zero Trust 모델 기반의 인프라 보안 설계 전략](infrastructure-deep-dive/04-zero-trust-infrastructure-security.md)
+- [05. AI/LLM 서비스를 위한 인프라 설계와 추론 최적화 전략](infrastructure-deep-dive/05-ai-llm-serving-infrastructure.md)
 
 ---
 
-## 대규모 데이터 처리 (7편)
+## 🤖 AI 에이전트 및 실전 자동화
 
-배치, Kafka, DB 최적화, 스트리밍까지 — 데이터가 커지면 알아야 할 것들.
+### AI Agent 실전 가이드
+개념부터 아키텍처, 비용, 보안, 배포까지 AI 에이전트 도입의 전 과정을 다룹니다.
+- [개념 및 아키텍처](ai-agent-guide/01-concept.md) / [사무·고객·서버 에이전트 활용](ai-agent-guide/03-office-agent.md) / [비용 및 보안](ai-agent-guide/07-cost.md) / [배포 및 운영](ai-agent-guide/09-deployment.md)
 
-| # | 제목 |
-|---|------|
-| 1 | [배치 vs 실시간 — 왜 나누고 언제 합치는가](large-scale-data/01-batch-vs-realtime.md) |
-| 2 | [Spring Batch 심화 — 100만~1,000만 건 처리의 정석](large-scale-data/02-spring-batch.md) |
-| 3 | [Kafka 기초 — 메시지 큐가 왜 대규모 처리의 핵심인가](large-scale-data/03-kafka-basics.md) |
-| 4 | [Kafka + Worker 패턴 — 1억 건을 병렬로 처리하기](large-scale-data/04-kafka-worker.md) |
-| 5 | [DB 최적화 — 대량 데이터에서 살아남는 SQL](large-scale-data/05-db-optimization.md) |
-| 6 | [실시간 스트리밍 — Kafka Streams와 Flink](large-scale-data/06-streaming.md) |
-| 7 | [10억 건 아키텍처 — Spark, 데이터 레이크, 그리고 현실](large-scale-data/07-billion-architecture.md) |
+### AI 에이전트 설계 패턴
+- [사고 방식 패턴 (ReAct, CoT)](ai-agent-design/01-thinking-patterns.md) / [자동화 파이프라인](ai-agent-design/02-automation-pipeline.md) / [멀티 에이전트 오케스트레이션](ai-agent-design/03-multi-agent.md)
+
+### AI 하네스 (AI Harness)
+AI에게 사내 규칙을 가르치고 행동을 제어하는 프레임워크 가이드입니다.
+- [하네스의 개념](ai-harness/01-what-is-harness.md) / [프로젝트 규칙 작성](ai-harness/02-project-rules.md) / [메모리와 Skills](ai-harness/03-memory-skills.md) / [보안 및 도입 전략](ai-harness/04-hooks-security.md)
 
 ---
 
-## 단독 Articles
+## 📊 대규모 데이터 및 실무 기술 가이드
 
-| 제목 |
-|------|
-| [AI는 어떻게 생각하고 행동하는가? — CoT, Tool Use, ReAct, MCP 완전 정리](articles/ai-patterns-guide.md) |
-| [CI/CD에 AI를 끼얹으면 — PR부터 프로덕션 배포까지 자동화하기](articles/cicd-ai-pipeline.md) |
-| [클라우드 비용 비교 — AWS, NCP, GCP, Azure 트래픽 규모별 실전 견적](articles/cloud-cost-comparison.md) |
-| [Node.js vs Spring Batch — 배치 처리, 뭘로 할까](articles/nodejs-vs-spring-batch.md) |
-| [프롬프트 체인 실전 — 이커머스 고객 문의 자동 처리 시스템 만들기](articles/prompt-chain-ecommerce.md) |
-| [온프레미스 LLM 서빙 — Ollama vs vLLM, 프로덕션에서 AI 모델을 돌린다는 것](articles/vllm-model-serving.md) |
-| [LLM 서버에 사람이 몰리면 — 대기열, 스케일 아웃, 오토스케일링](articles/vllm-scaling.md) |
+### 대규모 데이터 처리
+- [배치 vs 실시간 전략](large-scale-data/01-batch-vs-realtime.md) / [Spring Batch 심화](large-scale-data/02-spring-batch.md) / [Kafka 기반 병렬 처리](large-scale-data/04-kafka-worker.md) / [10억 건 아키텍처](large-scale-data/07-billion-architecture.md)
+
+### DB 트래픽 및 트러블슈팅 (DB Troubleshooting)
+- [인덱스 최적화](db-troubleshooting/01-perf-index.md) / [슬로우 쿼리 분석](db-troubleshooting/02-perf-slow-query.md) / [데드락 방지](db-troubleshooting/06-sapjil-deadlock-prevention.md) / [커넥션 풀 누수 관리](db-troubleshooting/07-sapjil-connection-pool-leak.md)
+
+### Java & Node.js 실무 패턴 (Java-Node Practice)
+- [JPA N+1 문제 해결](java-node-practice/01-java-mistake-n-plus-1.md) / [트랜잭션 관리 실수 사례](java-node-practice/02-java-mistake-transaction.md) / [Java vs Node.js 레이어 설계 비교](java-node-practice/06-java-node-structure.md)
+
+---
+
+## 📝 단독 기술 아티클
+
+- [AI 사고 방식 패턴 완전 정리](articles/ai-patterns-guide.md)
+- [CI/CD와 AI 결합 가이드](articles/cicd-ai-pipeline.md)
+- [클라우드 비용 비교 및 실전 견적](articles/cloud-cost-comparison.md)
+- [API 보안 및 백오피스 설계 체크리스트](articles/api-security-admin-checklist.md)
+- [효율적인 패키지 네이밍 가이드](articles/package-naming.md)
 
 ---
 
 ## About
 
-현업 개발자가 실무에서 겪은 경험을 바탕으로 정리한 글 모음입니다.
+현업 개발자가 실무에서 경험한 기술적 도전과 해결책을 정리한 저장소입니다.
 
-- Blog: https://marshmello.tistory.com
-- AI, Backend, DevOps 관련 주제를 다룹니다
+- AI 에이전트 설계 및 도입
+- 고성능 백엔드 아키텍처 및 분산 시스템
+- 인프라 보안 및 비용 최적화 (FinOps)
+- 프런트엔드 성능 및 마이크로 아키텍처
