@@ -128,3 +128,6 @@
 &nbsp;
 
 카프카, Kafka, ZeroCopy, sendfile, 페이지캐시, 리눅스커널, 순차IO, 메시지브로커
+
+&nbsp;
+Kafka, ZeroCopy, PageCache, 순차IO, 메시지큐, 분산시스템, 백엔드설계

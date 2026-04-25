@@ -124,3 +124,6 @@ Zookeeper는 분산 코디네이션 서비스답게 락 구현에 최적화된 *
 &nbsp;
 
 분산락, DistributedLock, Redis, Redlock, Zookeeper, 동시성제어, 정합성, FencingToken
+
+&nbsp;
+분산락, Redis, Redlock, Zookeeper, 동시성제어, 정합성한계, 백엔드설계

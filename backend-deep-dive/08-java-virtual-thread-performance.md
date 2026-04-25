@@ -1,7 +1,5 @@
 # [백엔드 8편] Java Virtual Thread — Thread-per-Request 모델의 한계를 극복하는 새로운 동시성 패러다임
 
-Java21, VirtualThread, Loom프로젝트, 동시성모델, 성능최적화, 처리량향상, 백엔드설계
-
 &nbsp;
 
 높은 동시성을 확보하기 위해 그동안 Java 개발자들은 리소스 소모가 큰 Thread-per-Request 모델과 코드 복잡도가 높은 Reactive Programming 사이에서 고민해 왔습니다. 
@@ -53,3 +51,6 @@ Virtual Thread 도입 시 가장 주의해야 할 현상이 Pinning입니다.
 1.  스레드 풀 지양: Virtual Thread는 생성 비용이 저렴하므로 기존처럼 스레드 풀에 가두는 대신 필요할 때마다 생성하여 사용하는 방식이 권장됩니다.
 2.  ThreadLocal 사용 주의: 수백만 개의 스레드가 무거운 ThreadLocal 변수를 가지게 되면 메모리 압박이 올 수 있으므로 Scoped Values 도입을 검토해야 합니다.
 3.  라이브러리 호환성 체크: 사용하는 라이브러리가 내부적으로 synchronized를 사용하는지 확인해야 하며, 최근 라이브러리들은 점진적으로 Virtual Thread를 지원하고 있습니다.
+
+&nbsp;
+Java21, VirtualThread, Loom프로젝트, 동시성모델, 성능최적화, 처리량향상, 백엔드설계

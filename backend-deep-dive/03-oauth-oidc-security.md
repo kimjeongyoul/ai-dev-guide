@@ -131,3 +131,6 @@ JSON과 REST API의 느린 속도와 장황한 페이로드에 지쳤다면? 구
 &nbsp;
 
 OAuth2, OIDC, 보안취약점, JWT검증, CSRF방어, PKCE, 소셜로그인, 백엔드보안
+
+&nbsp;
+OAuth2, OIDC, 인증보안, JWT, AccessToken, API보안, 백엔드설계

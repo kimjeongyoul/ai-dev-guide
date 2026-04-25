@@ -147,3 +147,6 @@ MSA에서 가장 고통스러운 순간은 '결제는 성공했는데 재고 차
 &nbsp;
 
 gRPC, Protobuf, HTTP2, MSA통신, 직렬화최적화, 프로토콜버퍼, 양방향스트리밍, 백엔드아키텍처
+
+&nbsp;
+gRPC, Protobuf, HTTP2, MSA통신, 직렬화, 고성능RPC, 백엔드설계
