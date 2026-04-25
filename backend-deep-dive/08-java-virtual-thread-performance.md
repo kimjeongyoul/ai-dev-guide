@@ -2,55 +2,76 @@
 
 &nbsp;
 
-높은 동시성을 확보하기 위해 그동안 Java 개발자들은 리소스 소모가 큰 Thread-per-Request 모델과 코드 복잡도가 높은 Reactive Programming 사이에서 고민해 왔습니다. 
- Java 21에서 도입된 Virtual Thread(Project Loom)는 이러한 고민에 대한 새로운 해답을 제시합니다. 본 아티클에서는 Virtual Thread의 내부 메커니즘과 도입 시 고려해야 할 사항들을 분석합니다.
-
----
-
-## 1. Platform Thread의 한계와 진화
-
-기존 Java의 Thread는 OS 스레드를 래핑한 Platform Thread입니다.
-
-*   높은 리소스 비용: OS 스레드는 생성 시 약 1MB의 스택 메모리를 할당받으며 컨텍스트 스위칭 비용이 발생합니다.
-*   I/O 블로킹 문제: I/O 작업 동안 OS 스레드는 대기 상태가 되어 리소스가 낭비됩니다. 이를 해결하기 위해 등장한 리액티브 스택은 성능은 좋으나 학습 곡선이 높고 디버깅이 어렵다는 단점이 있습니다.
-
----
-
-## 2. Virtual Thread의 내부 구조: Carrier Thread와 Continuation
-
-Virtual Thread는 OS 스레드에 직접 매핑되지 않는 경량 사용자 수준 스레드입니다.
-
-### 2.1 Carrier Thread와 스케줄링
-Virtual Thread는 실제로 ForkJoinPool 기반의 Carrier Thread 위에서 실행됩니다. Virtual Thread가 I/O 작업을 만나 블로킹되면, 런타임은 해당 Virtual Thread의 상태를 힙(Heap) 메모리에 저장하고 Carrier Thread에서 언마운트(Unmount)합니다. Carrier Thread는 즉시 다른 Virtual Thread를 실행할 수 있게 되어 소수의 OS 스레드로 많은 동시 요청을 처리할 수 있습니다.
-
-### 2.2 Continuation
-Virtual Thread의 핵심은 실행 중인 코드 지점과 로컬 변수 상태를 캡처하여 저장했다가 나중에 다시 실행할 수 있게 해주는 저수준 기술입니다.
-
----
-
-## 3. 실무 도입 시의 핵심 이슈: Pinning (피닝)
-
-Virtual Thread 도입 시 가장 주의해야 할 현상이 Pinning입니다.
-
-*   발생 조건: synchronized 블록 내부에서 I/O 작업을 수행하거나 Native Method를 호출할 때 발생합니다.
-*   현상: Virtual Thread가 Carrier Thread에서 언마운트되지 못하고 OS 스레드를 점유하게 되어 시스템 가용성이 떨어집니다.
-*   해결책: synchronized 대신 ReentrantLock을 사용하여 블로킹 시 언마운트가 원활하게 일어나도록 코드를 수정해야 합니다.
-
----
-
-## 4. 성능 분석: WebFlux vs Virtual Thread
-
-*   처리량: I/O 밀집형 작업에서 Virtual Thread는 WebFlux와 대등하거나 그 이상의 성능을 보여줍니다.
-*   메모리 효율: 수만 개의 요청이 몰려도 Virtual Thread는 힙 메모리를 유연하게 사용하므로 효율적입니다.
-*   개발 경험: Virtual Thread의 이점은 가독성입니다. 리액티브 연산자 없이 익숙한 코드로 높은 성능을 구현할 수 있습니다.
-
----
-
-## 5. 실무 도입 및 운영 가이드라인
-
-1.  스레드 풀 지양: Virtual Thread는 생성 비용이 저렴하므로 기존처럼 스레드 풀에 가두는 대신 필요할 때마다 생성하여 사용하는 방식이 권장됩니다.
-2.  ThreadLocal 사용 주의: 수백만 개의 스레드가 무거운 ThreadLocal 변수를 가지게 되면 메모리 압박이 올 수 있으므로 Scoped Values 도입을 검토해야 합니다.
-3.  라이브러리 호환성 체크: 사용하는 라이브러리가 내부적으로 synchronized를 사용하는지 확인해야 하며, 최근 라이브러리들은 점진적으로 Virtual Thread를 지원하고 있습니다.
+"스레드가 부족합니다." 자바 백엔드 개발자라면 한 번쯤 마주했을 시스템의 한계다. 그동안 자바의 스레드는 운영체제(OS)의 스레드와 1:1로 매핑되는 **Platform Thread**였다. OS 스레드는 생성 비용이 비싸고, 메모리를 많이 차지하며(약 1MB), Context Switch 오버헤드가 막대하다. 수만 명의 동시 접속자를 처리하기 위해 스레드를 무한정 늘리는 것은 물리적으로 불가능했다. 
 
 &nbsp;
+
+이 한계를 넘기 위해 등장한 WebFlux와 같은 비동기 리액티브 프로그래밍은 성능은 좋았지만, 코드가 읽기 힘들고 디버깅이 지옥 같다는 치명적인 단점이 있었다. 하지만 자바 21의 **Virtual Thread(Project Loom)**는 다시 우리에게 "동기식 코드의 편안함"과 "비동기 수준의 성능"이라는 두 마리 토끼를 안겨주었다. 
+
+&nbsp;
+
+본 글에서는 가상 스레드가 어떻게 수백만 개의 동시 워크로드를 경량화된 방식으로 처리하는지 그 내부 메커니즘을 파헤친다.
+
+&nbsp;
+
+&nbsp;
+
+---
+
+&nbsp;
+
+# 1. 가상 스레드의 혁신: Carrier Thread와 Continuation
+
+&nbsp;
+
+가상 스레드는 OS 스레드 위에 떠 있는 **'경량 논리 스레드'**다.
+
+&nbsp;
+
+- **마운트와 언마운트**: 가상 스레드가 실제 연산을 하려면 OS 스레드(Carrier Thread)에 올라타야 한다. 만약 DB I/O를 기다려야 하는 상황(Blocking)이 오면, 가상 스레드는 즉시 Carrier Thread에서 내려와(Unmount) 메모리에 자신의 상태를 저장하고 대기한다. 그동안 Carrier Thread는 다른 가상 스레드를 올려 연산을 계속한다.
+- **Continuation**: 이 마법 같은 작업 전환은 `Continuation`이라는 기술을 통해 이루어진다. 실행 중인 코드의 지점과 스택 상태를 캡처하여 힙(Heap) 메모리에 저장하고, 나중에 다시 복원하는 기술이다. 덕분에 스레드 전환 시 발생하는 OS 커널의 Context Switch 오버헤드를 유저 공간(User-space)의 가벼운 작업으로 대체한다.
+
+&nbsp;
+
+&nbsp;
+
+---
+
+&nbsp;
+
+# 2. 왜 지금 Virtual Thread인가?
+
+&nbsp;
+
+- **무한에 가까운 스레드 수**: 메모리 사용량이 수 KB에 불과하므로, 하나의 JVM 프로세스에서 수십만, 수백만 개의 가상 스레드를 띄울 수 있다. 더 이상 스레드 풀(Thread Pool)의 크기에 전전긍긍할 필요가 없다.
+- **코드의 가독성 유지**: 리액티브 프로그래밍의 복잡한 연산자 체이닝 없이, 기존의 익숙한 `try-catch`와 순차적 코드를 그대로 사용하면서도 높은 동시성을 확보한다.
+
+&nbsp;
+
+&nbsp;
+
+---
+
+&nbsp;
+
+# 3. 실전 엔지니어링 교훈: 은탄환은 없다
+
+&nbsp;
+
+시니어 엔지니어라면 새로운 기술의 이면을 보아야 한다.
+
+1. **CPU Bound 작업에는 부적합**: 가상 스레드는 I/O 대기 시간이 많은 작업(API 호출, DB 조회 등)에서 빛을 발한다. 연산량이 많은 CPU 집중 작업에서는 오히려 가상 스레드 관리 비용만 추가될 뿐이다.
+2. **Pinning(피닝) 문제**: `synchronized` 블록 내에서 I/O 작업을 수행하면 가상 스레드가 Carrier Thread에서 내려오지 못하고 '고정(Pinning)'되어 버린다. 이 경우 가상 스레드의 이점이 사라지므로, `ReentrantLock`으로 코드를 전환하는 등의 작업이 필요하다.
+3. **Thread-local의 남용 금지**: 스레드가 수백만 개로 늘어날 수 있으므로, Thread-local에 무거운 객체를 저장하면 순식간에 OOM(Out Of Memory)이 발생할 수 있다.
+
+가상 스레드는 자바 동시성 모델의 **'위대한 복귀'**다. 기술의 하부 원리를 이해하고 제약 사항을 피할 수 있다면, 당신은 가장 현대적이고 강력한 백엔드 시스템을 설계할 수 있게 될 것이다.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 Java21, VirtualThread, Loom프로젝트, 동시성모델, 성능최적화, 처리량향상, 백엔드설계
