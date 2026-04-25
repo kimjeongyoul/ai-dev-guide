@@ -1,5 +1,7 @@
 # [프런트엔드 2편] Critical Rendering Path 최적화 — 브라우저 렌더링 파이프라인 이해를 통한 LCP 개선 전략
 
+CRP최적화, 브라우저렌더링, 웹성능, LCP개선, DOM파싱, 성능최적화, 프런트엔드설계
+
 &nbsp;
 
 웹 성능 지표 중 하나인 LCP(Largest Contentful Paint)는 사용자 경험을 결정짓는 핵심적인 요소입니다. 

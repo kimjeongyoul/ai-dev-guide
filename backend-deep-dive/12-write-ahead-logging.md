@@ -1,5 +1,7 @@
 # [백엔드 12편] Write-Ahead Logging(WAL) — 왜 모든 고성능 데이터베이스는 실제 데이터보다 로그를 먼저 기록하는가?
 
+WAL, 데이터베이스, 장애복구, 성능최적화, 정합성, SequentialWrite, 백엔드설계
+
 &nbsp;
 
 PostgreSQL, MySQL, 그리고 Kafka까지. 현대 데이터 플랫폼의 정합성과 성능을 지탱하는 기술의 뿌리에는 **WAL(Write-Ahead Logging)**이 있습니다. 데이터를 직접 쓰는 것보다 로그를 남기는 것이 왜 더 빠르고 안전한지 그 비밀을 파헤칩니다.

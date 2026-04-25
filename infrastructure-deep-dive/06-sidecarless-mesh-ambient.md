@@ -1,5 +1,7 @@
 # [인프라 06편] Sidecarless 아키텍처 — 왜 서비스 메시는 Sidecar를 버리고 Ambient Mesh로 진화하는가?
 
+Sidecarless, AmbientMesh, Istio, ztunnel, 서비스메시, 성능최적화, 인프라설계
+
 &nbsp;
 
 Kubernetes 생태계에서 서비스 메시(Service Mesh)는 필수적인 인프라 레이어로 자리 잡았습니다. 하지만 모든 Pod에 Envoy 프록시를 띄우는 Sidecar 방식은 막대한 비용과 운영 복잡도를 야기했죠. 이제 그 대안으로 떠오른 **Sidecarless(Ambient Mesh)**의 설계 원리를 분석합니다.

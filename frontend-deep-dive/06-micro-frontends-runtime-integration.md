@@ -1,5 +1,7 @@
 # [프런트엔드 06편] Micro-Frontends 런타임 통합 — 팀 간 배포 독립성을 확보하기 위한 Module Federation 설계 전략은?
 
+ModuleFederation, 런타임통합, Webpack5, 의존성관리, 장애격리, MFE, 프런트엔드설계
+
 &nbsp;
 
 대규모 조직에서 프런트엔드 앱이 비대해지면 팀 간 개발 간섭과 배포 지연이 발생합니다. 이를 해결하기 위해 각 기능을 독립적으로 배포하고 브라우저에서 하나로 합치는 **Micro-Frontends** 런타임 통합 전략을 분석합니다.

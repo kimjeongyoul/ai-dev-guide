@@ -1,5 +1,7 @@
 # [백엔드 13편] 무중단 배포 전략 — Blue-Green과 Canary 중 당신의 서비스에 맞는 최적의 선택은?
 
+무중단배포, BlueGreen, Canary, 리스크관리, 배포전략, 롤백, 백엔드설계
+
 &nbsp;
 
 Zero-Downtime Deployment는 현대 백엔드 운영의 기본입니다. 하지만 모든 서비스에 동일한 방식이 정답은 아닙니다. 리스크 관리 방식이 전혀 다른 **Blue-Green**과 **Canary** 배포의 트레이드오프를 분석합니다.

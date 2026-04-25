@@ -1,5 +1,7 @@
 # [백엔드 8편] Java Virtual Thread — Thread-per-Request 모델의 한계를 극복하는 새로운 동시성 패러다임
 
+Java21, VirtualThread, Loom프로젝트, 동시성모델, 성능최적화, 처리량향상, 백엔드설계
+
 &nbsp;
 
 높은 동시성을 확보하기 위해 그동안 Java 개발자들은 리소스 소모가 큰 Thread-per-Request 모델과 코드 복잡도가 높은 Reactive Programming 사이에서 고민해 왔습니다. 

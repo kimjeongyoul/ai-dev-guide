@@ -1,5 +1,7 @@
 # [백엔드 14편] RAG 아키텍처와 Vector DB — LLM 기반 서비스에서 백엔드 엔지니어는 무엇에 집중해야 하는가?
 
+RAG, VectorDB, LLM, 생성형AI, 임베딩, 데이터파이프라인, 백엔드설계
+
 &nbsp;
 
 생성형 AI를 백엔드에 통합할 때, 모델 자체보다 중요한 것은 데이터의 흐름입니다. LLM의 환각 현상을 방지하고 최신 정보를 제공하기 위한 **RAG(Retrieval-Augmented Generation)** 아키텍처와 그 심장부인 **Vector DB**의 역할을 분석합니다.

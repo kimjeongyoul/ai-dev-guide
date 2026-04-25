@@ -1,5 +1,7 @@
 # [프런트엔드 3편] React Server Components(RSC) — 기존 SSR의 한계를 넘어선 새로운 데이터 페칭 패러다임
 
+React, RSC, ServerComponents, SSR, 성능최적화, 데이터페칭, 프런트엔드설계
+
 &nbsp;
 
 React Server Components(RSC)는 단순히 기존 SSR의 연장선이 아니라, 프런트엔드 애플리케이션의 런타임 구조를 서버와 클라이언트로 명확히 분리하는 새로운 패러다임입니다. 
