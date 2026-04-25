@@ -1,6 +1,9 @@
-# 브라우저 Critical Rendering Path 최적화를 통한 LCP 개선 전략
+# [프런트엔드 2편] Critical Rendering Path 최적화 — 브라우저 렌더링 파이프라인 이해를 통한 LCP 개선 전략
 
-웹 성능 지표 중 하나인 LCP(Largest Contentful Paint)는 사용자 경험을 결정짓는 핵심적인 요소입니다. 단순히 이미지 크기를 줄이는 것을 넘어, 브라우저의 Critical Rendering Path(CRP)를 이해하고 각 단계의 병목을 제거하는 고도화된 최적화 전략이 필요합니다.
+&nbsp;
+
+웹 성능 지표 중 하나인 LCP(Largest Contentful Paint)는 사용자 경험을 결정짓는 핵심적인 요소입니다. 
+ 단순히 이미지 크기를 줄이는 것을 넘어, 브라우저의 Critical Rendering Path(CRP)를 이해하고 각 단계의 병목을 제거하는 고도화된 최적화 전략이 필요합니다.
 
 ---
 

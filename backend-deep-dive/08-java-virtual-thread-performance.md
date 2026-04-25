@@ -1,6 +1,9 @@
-# Java 동시성 모델의 변화: Virtual Thread의 내부 동작과 도입 가이드
+# [백엔드 8편] Java Virtual Thread — Thread-per-Request 모델의 한계를 극복하는 새로운 동시성 패러다임
 
-높은 동시성을 확보하기 위해 그동안 Java 개발자들은 리소스 소모가 큰 Thread-per-Request 모델과 코드 복잡도가 높은 Reactive Programming 사이에서 고민해 왔습니다. Java 21에서 도입된 Virtual Thread(Project Loom)는 이러한 고민에 대한 새로운 해답을 제시합니다. 본 아티클에서는 Virtual Thread의 내부 메커니즘과 도입 시 고려해야 할 사항들을 분석합니다.
+&nbsp;
+
+높은 동시성을 확보하기 위해 그동안 Java 개발자들은 리소스 소모가 큰 Thread-per-Request 모델과 코드 복잡도가 높은 Reactive Programming 사이에서 고민해 왔습니다. 
+ Java 21에서 도입된 Virtual Thread(Project Loom)는 이러한 고민에 대한 새로운 해답을 제시합니다. 본 아티클에서는 Virtual Thread의 내부 메커니즘과 도입 시 고려해야 할 사항들을 분석합니다.
 
 ---
 
