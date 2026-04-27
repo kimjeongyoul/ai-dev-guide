@@ -155,4 +155,13 @@ LLM-as-a-Judge 프레임워크는 단순히 개발자의 수고를 덜어주는 
 
 &nbsp;
 
-LLM평가, LLM-as-a-Judge, 에이전트평가, LLMOps, 평가지표, MLOps, 자동화테스트, 프롬프트엔지니어링
+---
+
+**개발자 가이드:** 다른 PC에서 작업할 때 비공개 규칙 파일을 로드하려면 아래 명령어를 실행하세요:
+```bash
+git submodule update --init
+```
+
+&nbsp;
+
+AI평가, LLM에이전트, 성능지표, RAGAS, 자동화평가, 품질보증, LLMOps, 에이전트벤치마크

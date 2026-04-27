@@ -209,4 +209,13 @@ LLM이 생성한 코드를 실행 환경(Runtime)으로 보내기 전에, 비용
 
 &nbsp;
 
-AI에이전트, SelfCorrection, 자기수정루프, LangGraph, 에러핸들링, LLMOps, 아키텍처설계, 할루시네이션방어
+---
+
+**개발자 가이드:** 다른 PC에서 작업할 때 비공개 규칙 파일을 로드하려면 아래 명령어를 실행하세요:
+```bash
+git submodule update --init
+```
+
+&nbsp;
+
+AI에이전트, 에러핸들링, SelfCorrection, 자가수정, 회복탄력성, LLMOps, 예외처리전략
