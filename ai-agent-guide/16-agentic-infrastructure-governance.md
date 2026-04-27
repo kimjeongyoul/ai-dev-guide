@@ -173,13 +173,6 @@ graph TD
 
 &nbsp;
 
----
-
-**개발자 가이드:** 다른 PC에서 작업할 때 비공개 규칙 파일을 로드하려면 아래 명령어를 실행하세요:
-```bash
-git submodule update --init
-```
-
 &nbsp;
 
 AI에이전트, AgenticInfrastructure, GoldenPath, 인프라거버넌스, MLOps, LLMOps, 보안가드레일, 자동화보안
